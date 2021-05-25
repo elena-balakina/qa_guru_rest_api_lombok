@@ -123,6 +123,7 @@ public class BookStoreTests {
                 .then()
                 .spec(Specs.responseSpecs)
                 .log().body()
-                .body(matchesJsonSchemaInClasspath("jsonshemas/booklist_response.json"));
+                .body(matchesJsonSchemaInClasspath("jsonshemas/booklist_response.json"))
+                .body("books.findAll{it.isbn.contains(\"9781593275\")}.flatten()", is(not(empty())));
     }
 }
